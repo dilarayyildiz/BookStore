@@ -1,9 +1,5 @@
 # 📚 BookStore API
 
-A simple ASP.NET Core Web API that provides basic CRUD operations for managing books in a bookstore system.
-
----
-
 ## 🚀 Tech Stack
 
 - ASP.NET Core 8.0
