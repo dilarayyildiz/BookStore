@@ -1,3 +1,4 @@
+using BookStoreApi.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreApi.DBOperations;
@@ -13,11 +14,45 @@ public class DataGenerator
             {
                 return;
             }
+            context.Genres.AddRange(
+                new Genre
+                {
+                    Name = "Personal Growth"
+                },
+                new Genre
+                {
+                    Name = "Science Fiction"
+                },
+                new Genre
+                {
+                    Name = "Romance"
+                }
+            );
+            context.Authors.AddRange(
+                new Author
+                {
+                    Name = "Eric",
+                    Surname = "Ries",
+                    BirthDate = new DateTime(1978, 09, 22),
+                },
+                new Author
+                {
+                    Name = "Charlotte",
+                    Surname = "Perkins Gilman",
+                    BirthDate = new DateTime(1860, 07, 03),
+                },
+                new Author
+                {
+                    Name = "Frank",
+                    Surname = "Herbert",
+                    BirthDate = new DateTime(1920, 10, 08),
+                }
+            );
 
             context.Books.AddRange(
                 new Book
                 {
-                    //Id = 1,
+                    
                     Title = "Lean Startup",
                     GenreId = 1,
                     PageCount = 200,
@@ -26,7 +61,7 @@ public class DataGenerator
                 },
                 new Book
                 {
-                    //Id = 2,
+                    
                     Title = "Herland",
                     GenreId = 2,
                     PageCount = 250,
@@ -35,7 +70,7 @@ public class DataGenerator
                 },
                 new Book
                 {
-                    //Id = 3,
+                    
                     Title = "Dune",
                     GenreId = 2,
                     PageCount = 540,

@@ -1,6 +1,6 @@
 using BookStoreApi.DBOperations;
 
-namespace BookStoreApi.BookOperations.DeleteBook;
+namespace BookStoreApi.Application.BookOperations.Command.DeleteBook;
 
 public class DeleteBookCommand
 {

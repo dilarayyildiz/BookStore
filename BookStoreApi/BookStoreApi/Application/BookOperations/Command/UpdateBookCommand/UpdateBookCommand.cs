@@ -1,6 +1,6 @@
 using BookStoreApi.DBOperations;
 
-namespace BookStoreApi.BookOperations.UpdateBookCommand;
+namespace BookStoreApi.Application.BookOperations.Command.UpdateBookCommand;
 
 public class UpdateBookCommand
 {
@@ -13,22 +13,21 @@ public class UpdateBookCommand
         _context = context;
     }
 
-    public void Handle()
+    public void Handle( int id)
     {
         var book = _context.Books.SingleOrDefault(x => x.Id == BookId);
         if (book is null)
-            throw new InvalidOperationException("Kitap bulunamadı");
+            throw new InvalidOperationException("Book not found");
 
         book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
         book.Title = Model.Title != default ? Model.Title : book.Title;
        
         _context.SaveChanges();
     }
-    public class UpdateBookModel
-    {
-        public string Title { get; set; }
-        public int GenreId { get; set; }
+}
+public class UpdateBookModel
+{
+    public string Title { get; set; }
+    public int GenreId { get; set; }
        
-    }
-        
 }
