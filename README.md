@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# BookStore
 =======
 # 📚 BookStore API
 
@@ -38,4 +36,3 @@
 
 Each endpoint follows RESTful conventions and returns proper status codes and error messages when necessary.
 
->>>>>>> 1e0ea01 (Update README.md)
