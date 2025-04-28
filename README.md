@@ -1,4 +1,4 @@
-=======
+
 # 📚 BookStore API
 
 ## 🚀 Tech Stack
