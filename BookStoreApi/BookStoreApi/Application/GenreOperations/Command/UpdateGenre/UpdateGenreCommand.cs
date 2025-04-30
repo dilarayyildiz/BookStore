@@ -1,3 +1,4 @@
+using AutoMapper;
 using BookStoreApi.DBOperations;
 
 namespace BookStoreApi.Application.GenreOperations.Command.UpdateGenre;
@@ -6,10 +7,13 @@ public class UpdateGenreCommand
 {
     public int GenreId { get; set; }
     public UpdateGenreModel Model { get; set; }
-    private readonly BookStoreDbContext _context;
-    public UpdateGenreCommand(BookStoreDbContext context)
+    private readonly IBookStoreDbContext _context;
+    private readonly IMapper _mapper;
+    public UpdateGenreCommand(IBookStoreDbContext context , IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
+        
     }
     public void Handle()
     {

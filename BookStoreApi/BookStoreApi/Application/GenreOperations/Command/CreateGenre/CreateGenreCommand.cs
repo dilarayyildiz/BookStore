@@ -1,3 +1,4 @@
+using AutoMapper;
 using BookStoreApi.DBOperations;
 using BookStoreApi.Entities;
 
@@ -6,20 +7,27 @@ namespace BookStoreApi.Application.GenreOperations.Command.CreateGenre;
 public class CreateGenreCommand
 {
     public CreateGenreModel Model { get; set; }
-    private readonly BookStoreDbContext _context;
-    public CreateGenreCommand(BookStoreDbContext context)
+    private readonly IBookStoreDbContext _dbContext;
+    private readonly IMapper _mapper;
+
+
+    public CreateGenreCommand(IBookStoreDbContext dbContext ,IMapper mapper)
     {
-        _context = context;
+        _dbContext = dbContext;
+        _mapper = mapper;
+        //_context = context;
+       // _mapper = 
+        
     }
     public void Handle()
     {
-        var genre = _context.Genres.SingleOrDefault(x => x.Name == Model.Name);
+        var genre = _dbContext.Genres.SingleOrDefault(x => x.Name == Model.Name);
         if (genre is not null)
             throw new InvalidOperationException("Genre already exists");
         genre = new Genre();
         genre.Name = Model.Name;
-        _context.Genres.Add(genre);
-        _context.SaveChanges();
+        _dbContext.Genres.Add(genre);
+        _dbContext.SaveChanges();
     }
     
 }

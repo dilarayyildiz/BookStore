@@ -15,10 +15,10 @@ namespace BookStoreApi.Controllers;
 
 public class GenreController : ControllerBase
 {
-    private readonly BookStoreDbContext _context;
+    private readonly IBookStoreDbContext _context;
     
     private readonly IMapper _mapper;
-    public GenreController(BookStoreDbContext context ,IMapper mapper)
+    public GenreController(IBookStoreDbContext context ,IMapper mapper)
     {
         _mapper = mapper;
         _context = context;
@@ -44,7 +44,7 @@ public class GenreController : ControllerBase
     [HttpPost]
     public IActionResult AddGenre([FromBody] CreateGenreModel newGenre)
     {
-        CreateGenreCommand command = new CreateGenreCommand(_context);
+        CreateGenreCommand command = new CreateGenreCommand(_context, _mapper);
         command.Model = newGenre;
         
         CreateGenreCommandValidator validator = new CreateGenreCommandValidator();
@@ -56,7 +56,7 @@ public class GenreController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult UpdateGenre(int id, [FromBody] UpdateGenreModel updateGenre)
     {
-        UpdateGenreCommand command = new UpdateGenreCommand(_context);
+        UpdateGenreCommand command = new UpdateGenreCommand(_context , _mapper);
         command.GenreId = id;
         command.Model = updateGenre;
         
